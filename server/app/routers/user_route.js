@@ -14,7 +14,7 @@ usersRouter.get('/testing', (req, res) => {
 usersRouter.post('/auth/users', userController.AuthUsers)
 
 // fetch all Users
-usersRouter.get('/samples', userController.getAllUsers)
+// usersRouter.get('/samples', userController.getAllUsers)
 
 // // Create new Users
 // usersRouter.post('/users', validateUsers(), validate, userController.usersStore)

@@ -1,16 +1,6 @@
 const usersModel = require('../../models/users')
-const sampleModel = require('../../models/sample')
 // Find all Users
-const allUsers = async (request) => {
-	try {
-		const user = await sampleModel.findAll({
-			raw: false,
-		})
-		return user.rows
-	} catch (error) {
-		throw new Error()
-	}
-}
+
 // Add New user
 const storeUsers = async (data, res) => {
 	try {
@@ -85,7 +75,6 @@ const findUserData = async (data, res) => {
 }
 
 module.exports = {
-	allUsers,
 	storeUsers,
 	deleteUser,
 	editUser,

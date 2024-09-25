@@ -32,7 +32,7 @@ sequelize
 		console.log(error)
 	})
 
-//Create db table if it does not exist
+// //Create db table if it does not exist
 sequelize.sync()
 
 module.exports = sequelize

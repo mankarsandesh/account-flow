@@ -44,23 +44,8 @@ const AuthUsers = async (req, res) => {
 	}
 }
 
-// Find all Users
-// fetch all get All users
-const getAllUsers = async (req, res) => {
-	console.log(req.query, 'sasa')
-	try {
-		const user = await allUsers(req)
-		const data = {
-			data: user,
-		}
-		return res.send(successResponse(data))
-	} catch (error) {
-		console.log(error)
-		return res.status(500).send(serverError())
-	}
-}
+
 
 module.exports = {
-	AuthUsers,
-	getAllUsers
+	AuthUsers
 }
