@@ -48,7 +48,7 @@ const editUser = async (data, res) => {
 const findUser = async (data, res) => {
 	try {
 		const count = await usersModel.findOne({
-			where: { userEmail: data.userEmail },
+			where: { user_email: data.user_email },
 		})
 		if (count === null) {
 			return false

@@ -34,5 +34,9 @@ sequelize
 
 // //Create db table if it does not exist
 sequelize.sync()
+// Force sync all models
+// It will drop the table first
+// and re-create it afterwards
+sequelize.sync({force:true})
 
 module.exports = sequelize

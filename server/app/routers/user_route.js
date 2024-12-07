@@ -1,8 +1,8 @@
 const express = require('express')
 const usersRouter = express.Router()
-const userController = require('../controller/users_controller')
+// const userController = require('../controller/users_controller')
 // // validation
-// const { validateUsers } = require('../middleware/validators/users')
+// const validateUsers  = require('../middleware/validators/users')
 // const validate = require('../middleware/validators/validate')
 // const authJwt = require('../middleware/validators/authJwt')
 
@@ -11,14 +11,14 @@ usersRouter.get('/testing', (req, res) => {
     res.send('Testing123')
 })
 // Login  Users
-usersRouter.post('/auth/users', userController.AuthUsers)
+// usersRouter.post('/auth/users', userController.AuthUsers)
 
 // fetch all Users
 // usersRouter.get('/samples', userController.getAllUsers)
 
-// // Create new Users
-// usersRouter.post('/users', validateUsers(), validate, userController.usersStore)
-//
+// Create new Users
+// usersRouter.post('/user', validateUsers, userController.usersStore)
+
 // // Update  User
 // usersRouter.put(
 //     '/users',

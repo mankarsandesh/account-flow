@@ -4,26 +4,26 @@ const db = require('../db/config')
 const Users = db.define(
 	'users',
 	{
-		userID: {
+		user_id: {
 			type: DataTypes.BIGINT(20).UNSIGNED,
 			allowNull: false,
 			primaryKey: true,
 			autoIncrement: true,
 		},
-		userName: {
+		user_name: {
 			type: DataTypes.STRING(255),
 			allowNull: false,
 		},
-		userEmail: {
+		user_email: {
 			type: DataTypes.STRING(255),
 			allowNull: false,
 			unique: true,
 		},
-		userType: {
+		user_type: {
 			type: DataTypes.ENUM('user', 'agent', 'owner', 'admin'),
 			defaultValue: 'user',
 		},
-		emailActive: {
+		email_active: {
 			type: DataTypes.INTEGER(10),
 			allowNull: false,
 			defaultValue: 0,
