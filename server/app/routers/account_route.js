@@ -1,9 +1,9 @@
 const express = require('express')
 const accountTypeRouter = express.Router()
-const accountController = require('../seeders/account-type')
+const accountController = require('../controller/account_controller')
 
 
-accountTypeRouter.post('/account-type', accountController.accountTypeStore)
+accountTypeRouter.get('/account-type', accountController.getAllAccount)
 
 
 

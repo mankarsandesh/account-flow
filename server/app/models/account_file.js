@@ -1,8 +1,10 @@
 const DataTypes = require('sequelize')
 const db = require('../db/config')
+const Transaction = require('./transaction')
+const Users = require('./users')
 
-const Account = db.define(
-    'account',
+const AccountFile = db.define(
+    'account_file',
     {
         id: {
             type: DataTypes.BIGINT(20).UNSIGNED,
@@ -10,12 +12,15 @@ const Account = db.define(
             primaryKey: true,
             autoIncrement: true,
         },
-        name: {
+        account_type: {
+            type: DataTypes.BIGINT(20).UNSIGNED,
+        },
+        file_name: {
             type: DataTypes.STRING(100),
             allowNull: false,
         },
-        icon: {
-            type : DataTypes.STRING(10),
+        file_url: {
+            type : DataTypes.STRING(100),
             allowNull: true,
         },
         status: {
@@ -37,8 +42,10 @@ const Account = db.define(
     },
     {
         freezeTableName: true,
-        tableName: 'account'
+        tableName: 'account_file'
     }
 )
 
-module.exports = Account
+Users.hasMany(AccountFile)
+
+module.exports = AccountFile

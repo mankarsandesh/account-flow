@@ -1,6 +1,7 @@
 const DataTypes = require('sequelize')
 const db = require('../db/config')
 const {NULL} = require("mysql/lib/protocol/constants/types");
+const AccountFile = require('./account_file');
 
 const Transaction = db.define(
     'transaction',

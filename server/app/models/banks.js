@@ -1,8 +1,9 @@
 const DataTypes = require('sequelize')
 const db = require('../db/config')
+const Users = require('./users')
 
-const Account = db.define(
-    'account',
+const Banks = db.define(
+    'banks',
     {
         id: {
             type: DataTypes.BIGINT(20).UNSIGNED,
@@ -10,16 +11,12 @@ const Account = db.define(
             primaryKey: true,
             autoIncrement: true,
         },
-        name: {
+        bank_name: {
             type: DataTypes.STRING(100),
             allowNull: false,
         },
-        icon: {
-            type : DataTypes.STRING(10),
-            allowNull: true,
-        },
-        status: {
-            type : DataTypes.STRING(10),
+        account_type: {
+            type: DataTypes.INTEGER(2),
             allowNull: false,
         },
         createdAt: {
@@ -37,8 +34,10 @@ const Account = db.define(
     },
     {
         freezeTableName: true,
-        tableName: 'account'
+        tableName: 'banks'
     }
 )
 
-module.exports = Account
+Users.hasMany(Banks)
+
+module.exports = Banks

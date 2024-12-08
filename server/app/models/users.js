@@ -1,41 +1,47 @@
 const DataTypes = require('sequelize')
 const db = require('../db/config')
+const Banks = require('./banks')
 
 const Users = db.define(
 	'users',
 	{
-		user_id: {
+		id: {
 			type: DataTypes.BIGINT(20).UNSIGNED,
 			allowNull: false,
 			primaryKey: true,
 			autoIncrement: true,
 		},
-		user_name: {
+		full_name: {
 			type: DataTypes.STRING(255),
 			allowNull: false,
 		},
-		user_email: {
+		email: {
 			type: DataTypes.STRING(255),
 			allowNull: false,
 			unique: true,
-		},
-		user_type: {
-			type: DataTypes.ENUM('user', 'agent', 'owner', 'admin'),
-			defaultValue: 'user',
 		},
 		email_active: {
 			type: DataTypes.INTEGER(10),
 			allowNull: false,
 			defaultValue: 0,
 		},
-		status: {
-			type: DataTypes.INTEGER(10),
-			allowNull: false,
-			defaultValue: 1,
-		},
 		password: {
 			type: DataTypes.STRING(100),
 			allowNull: false,
+		},
+		status: {
+			type: DataTypes.STRING(10),
+			allowNull: false,
+			defaultValue: 'active',
+		},
+		user_type: {
+			type: DataTypes.ENUM('superadmin', 'charter', 'user'),
+			defaultValue: 'charter',
+		},
+		created_by: {
+			type: DataTypes.INTEGER(10),
+			allowNull: false,
+			defaultValue: 0,
 		},
 		createdAt: {
 			type: DataTypes.DATE,
@@ -62,7 +68,7 @@ const Users = db.define(
 			attributes: {
 				exclude: ['password', 'createdAt'],
 			},
-			order: [['userID', 'DESC']],
+			order: [['id', 'DESC']],
 		},
 		// Scope Define then return password
 		scopes: {
@@ -74,5 +80,8 @@ const Users = db.define(
 		},
 	}
 )
+
+Banks.belongsTo(Users)
+
 
 module.exports = Users

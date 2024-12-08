@@ -1,5 +1,4 @@
-const Sequelize = require('sequelize')
-
+const {Sequelize} = require('sequelize')
 const sequelize = new Sequelize(
 	process.env.MYSQL_DATABASE,
 	process.env.MYSQL_USER,
@@ -22,6 +21,7 @@ const sequelize = new Sequelize(
 	}
 )
 
+
 //Check if the database is connected successfully
 sequelize
 	.authenticate()
@@ -32,11 +32,16 @@ sequelize
 		console.log(error)
 	})
 
-// //Create db table if it does not exist
+// const db = {};
+// db.Sequelize = Sequelize
+// db.sequelize = sequelize
+
+// db.accountType = require('../models/account_type')(Sequelize,DataTypes)
+// Create db table if it does not exist
 sequelize.sync()
 // Force sync all models
 // It will drop the table first
 // and re-create it afterwards
-sequelize.sync({force:true})
+// sequelize.sync({force:true})
 
 module.exports = sequelize
