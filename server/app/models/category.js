@@ -42,6 +42,6 @@ const Category = db.define(
     }
 )
 
-Users.hasMany(Category)
+
 
 module.exports = Category

@@ -1,6 +1,7 @@
 const DataTypes = require('sequelize')
 const db = require('../db/config')
-const {NULL} = require("mysql/lib/protocol/constants/types");
+const Users = require('./users');
+const Category = require('./category');
 const AccountFile = require('./account_file');
 
 const Transaction = db.define(
@@ -12,37 +13,25 @@ const Transaction = db.define(
             primaryKey: true,
             autoIncrement: true,
         },
-        user_id: {
-            type: DataTypes.BIGINT(20).UNSIGNED,
-            allowNull: false,
-        },
-        account_id: {
-            type: DataTypes.BIGINT(20).UNSIGNED,
-            allowNull: false,
-        },
-        transaction_date: {
+        date: {
             type: DataTypes.DATEONLY,
             allowNull: false,
         },
-        transaction_description: {
+        description: {
             type: DataTypes.STRING(255),
             allowNull: false,
         },
-        transaction_type: {
+        type: {
             type: DataTypes.ENUM('credit', 'debit'),
             allowNull: false,
         },
         amount: {
-            type : DataTypes.BIGINT(10).UNSIGNED,
+            type : DataTypes.INTEGER(10),
             allowNull: false,
         },
         balance: {
-            type : DataTypes.BIGINT(10).UNSIGNED,
+            type : DataTypes.INTEGER(10),
             allowNull: false,
-        },
-        category: {
-            type: DataTypes.STRING(30),
-            allowNull: true
         },
         createdAt: {
             type: DataTypes.DATE,
@@ -56,11 +45,19 @@ const Transaction = db.define(
             timestamps: false,
             field: 'updated_at',
         },
+        deletedAt: {
+			type: DataTypes.DATE,
+			allowNull: true,
+		},
     },
     {
         freezeTableName: true,
         tableName: 'transaction'
     }
 )
+
+
+// Define the relationship
+Category.hasMany(Transaction);
 
 module.exports = Transaction

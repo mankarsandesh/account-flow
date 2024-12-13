@@ -1,6 +1,8 @@
 const DataTypes = require('sequelize')
 const db = require('../db/config')
+const Transaction = require('./transaction')
 const Banks = require('./banks')
+const Category = require('./category')
 
 const Users = db.define(
 	'users',
@@ -20,7 +22,7 @@ const Users = db.define(
 			allowNull: false,
 			unique: true,
 		},
-		email_active: {
+		email_status: {
 			type: DataTypes.INTEGER(10),
 			allowNull: false,
 			defaultValue: 0,
@@ -55,7 +57,7 @@ const Users = db.define(
 			defaultValue: DataTypes.literal('CURRENT_TIMESTAMP()'),
 			field: 'updated_at',
 		},
-		deleted_at: {
+		deletedAt: {
 			type: DataTypes.DATE,
 			allowNull: true,
 		},
@@ -81,7 +83,8 @@ const Users = db.define(
 	}
 )
 
-Banks.belongsTo(Users)
 
+Users.hasMany(Banks)
+Users.hasMany(Category)
 
 module.exports = Users

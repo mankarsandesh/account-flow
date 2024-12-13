@@ -1,7 +1,8 @@
 const DataTypes = require('sequelize')
 const db = require('../db/config')
-const Transaction = require('./transaction')
 const Users = require('./users')
+const Banks = require('./banks')
+const Transactions = require('./transaction')
 
 const AccountFile = db.define(
     'account_file',
@@ -47,5 +48,7 @@ const AccountFile = db.define(
 )
 
 Users.hasMany(AccountFile)
+Banks.hasMany(AccountFile)
+Transactions.belongsTo(AccountFile)
 
 module.exports = AccountFile

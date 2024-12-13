@@ -1,6 +1,6 @@
 const DataTypes = require('sequelize')
 const db = require('../db/config')
-const Users = require('./users')
+const Account = require('./account')
 
 const Banks = db.define(
     'banks',
@@ -13,10 +13,6 @@ const Banks = db.define(
         },
         bank_name: {
             type: DataTypes.STRING(100),
-            allowNull: false,
-        },
-        account_type: {
-            type: DataTypes.INTEGER(2),
             allowNull: false,
         },
         createdAt: {
@@ -38,6 +34,6 @@ const Banks = db.define(
     }
 )
 
-Users.hasMany(Banks)
+Account.hasOne(Banks)
 
 module.exports = Banks
