@@ -9,4 +9,4 @@ COPY . /app
 
 RUN yarn install
 
-CMD ["yarn", "start"]
+CMD ["yarn", "start", "dev"]

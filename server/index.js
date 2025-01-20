@@ -1,5 +1,7 @@
 const cors = require('cors');
 const express = require('express');
+const bodyParser = require('body-parser')
+
 const banks = require('./app/models/banks')
 const account_file = require('./app/models/account_file')
 const account = require('./app/models/account')
@@ -9,8 +11,13 @@ const users = require('./app/models/users')
 // Connect DB
 require('./app/db/config')
 
-const app = express();
 
+const app = express();
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }))
+
+// parse application/json
+app.use(bodyParser.json())
 
 banks.sync();
 account_file.sync();
@@ -21,15 +28,13 @@ users.sync();
 
 
 // Routers
+const userRoute = require('./app/routers/user_route')
 // const accountRoute = require('./app/routers/account_route')
 // const transactionRouter = require('./app/routers/transaction_route')
 
-// app.use(accountRoute)
+app.use(userRoute)
 // app.use(transactionRouter)
 app.use(cors());
-app.get('/test', (req, res) => {
-      return res.send("test");
-});
 
 
 app.listen(process.env.REACT_APP_SERVER_PORT, () => {
