@@ -1,5 +1,4 @@
 version: "3"
-
 x-database-variables: &database-variables
   MYSQL_USER: sampleuser
   MYSQL_PASSWORD: samplepassword

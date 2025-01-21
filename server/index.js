@@ -29,10 +29,12 @@ users.sync();
 
 // Routers
 const userRoute = require('./app/routers/user_route')
+const categoryRoute = require('./app/routers/category_route')
 // const accountRoute = require('./app/routers/account_route')
 // const transactionRouter = require('./app/routers/transaction_route')
 
 app.use(userRoute)
+app.use(categoryRoute)
 // app.use(transactionRouter)
 app.use(cors());
 

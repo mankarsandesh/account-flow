@@ -7,6 +7,9 @@ COPY package.json /app
 
 COPY . /app
 
+# Set environment variables
+ENV JWT_SECRET_KEY="sandesh_AAWT_key"
+
 RUN npm install
 
 CMD ["npm", "start"]

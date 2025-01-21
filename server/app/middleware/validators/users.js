@@ -11,6 +11,16 @@ function validateUsers(user) {
   return JoiSchema.validate(user);
 }
 
+function validateCategory(data) {
+  const JoiSchema = Joi.object({
+    name: Joi.string().min(3).max(30).required(),
+    keyword: Joi.string().required(),
+    icon: Joi.string().optional(),
+  }).options({ abortEarly: false });
+  return JoiSchema.validate(data);
+}
+
+
 const validateAuthUser = (user) => {
   const JoiSchema = Joi.object({
     user_email: Joi.string().email().required(),
@@ -21,5 +31,6 @@ const validateAuthUser = (user) => {
 
 module.exports = {
   validateUsers,
+  validateCategory,
   validateAuthUser,
 };

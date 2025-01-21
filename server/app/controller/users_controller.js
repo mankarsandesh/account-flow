@@ -21,7 +21,6 @@ const AuthUsers = async (req, res) => {
       password: req.body.password,
     };
     const userData = await findUserData(usersData);
-    console.log(userData);
     if (!userData) {
       return res
         .status(401)
